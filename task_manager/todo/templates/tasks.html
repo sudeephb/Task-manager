@@ -4,10 +4,25 @@
 	<title>My Tasks</title>
 </head>
 <body>
-	<ol>
-		{% for task in tasks %}
-			<li>{{ task }}</li>
-		{% endfor %}
-	</ol>
+	<table>
+		<col width = 500>
+		<col width = 500>
+		<col width = 500>
+		<tr>
+			<th>TODO </th>
+			<th>Completed Tasks</th>
+			<th>Incomplete tasks</th>
+		</tr>
+		<tr>
+			<td>
+				<ol>
+					{% for task in tasks %}
+						<li>{{ task }} by {{ task.due }}</li>
+					{% endfor %}
+				</ol>
+			</td>
+
+	</table>
+	
 </body>
 </html>

@@ -10,7 +10,7 @@ def index(request):
 
 def tasks(request):
 	context = {
-		"tasks": Task.objects.all()
+		"tasks": Task.objects.all(),
 	}
 
 	return render(request, "tasks.html", context)
