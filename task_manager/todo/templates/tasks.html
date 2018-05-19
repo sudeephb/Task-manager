@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Tasks</title>
+</head>
+<body>
+	<ol>
+		{% for task in tasks %}
+			<li>{{ task }}</li>
+		{% endfor %}
+	</ol>
+</body>
+</html>
