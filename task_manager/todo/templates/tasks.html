@@ -14,14 +14,44 @@
 			<th>Incomplete tasks</th>
 		</tr>
 		<tr>
+
 			<td>
-				<ol>
-					{% for task in tasks %}
-						<li>{{ task }} by {{ task.due }}</li>
+				<ol> <!-- Todo -->
+					{% for task in tasks %}		
+						{% if task.status == 'to' %}
+							<li>{{ task }} by {{ task.due }}</li>
+						{% endif %}
 					{% endfor %}
 				</ol>
 			</td>
 
+
+
+
+			<td>
+				<ol>  <!-- Completed -->
+					{% for task in tasks %}	
+						{% if task.status == 'com' %}		
+							<li>{{ task }} by {{ task.due }}</li>
+						{% endif %}
+					{% endfor %}
+				</ol>
+			</td>
+
+
+			<td>
+				<ol>  <!-- Incomplete -->
+					{% for task in tasks %}	
+						{% if task.status == 'incom' %}		
+							<li>{{ task }} by {{ task.due }}</li>
+						{% endif %}
+					{% endfor %}
+				</ol>
+			</td>
+
+
+
+		</tr>
 	</table>
 	
 </body>
