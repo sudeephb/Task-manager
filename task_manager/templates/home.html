@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Task Manager {% endblock %}
+
+{% block body %}
+
+This is home
+<hr>
+<a href = '{% url 'tasks' %}'>My tasks </a>
+
+{% endblock %}
