@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block title %}
-	My Tasks
+My Tasks
 {% endblock %}
+
 
 {% block body %}
 	<table>
@@ -18,22 +19,29 @@
 
 			<td>
 				<ol> <!-- Todo -->
+					
+					<form action="{% url 'tasks' %}" method="post">
+							{% csrf_token %}
 					{% for task in tasks %}	
-							
-							<li>{{ task.status }}</li>
+						{% if task.status.status_text == 'to' %}
+							<li><input type = "checkbox" name = "todo" value = "{{ task.id }}"> {{ task }} </li>
+						{% endif %}
+					{% endfor %}
+
+				</ol>
 						
-					{% endfor %}
-				</ol>
+							<input type = "submit" value="Done!">
+						</form>
 			</td>
 
 
 
-<!-- 
+
 			<td>
-				<ol>  
-					{% for task in tasks %}	
-						{% if task.status == 'com' %}		
-							<li>{{ task }} by {{ task.due }}</li>
+				<ol>  <!-- Completed -->
+					{% for task in tasks %}
+						{% if task.status.status_text == 'com' %}		
+							<li> {{ task }} </li>
 						{% endif %}
 					{% endfor %}
 				</ol>
@@ -41,15 +49,15 @@
 
 
 			<td>
-				<ol>  
-					{% for task in tasks %}	
-						{% if task.status == 'incom' %}		
-							<li>{{ task }} by {{ task.due }}</li>
+				<ol>  <!-- Incomplete -->
+					{% for task in tasks %}		
+						{% if task.status.status_text == 'incom' %}
+						<li> {{ task }} </li>
 						{% endif %}
 					{% endfor %}
 				</ol>
 			</td>
- -->
+
 
 
 		</tr>
