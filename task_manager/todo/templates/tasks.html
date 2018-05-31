@@ -60,8 +60,16 @@ My Tasks
 			</td>
 
 
-
 		</tr>
 	</table>
+
+	<div style="text-align: center;">
+		<form action="" method="post">
+			{% csrf_token %}
+			<input type="text" name="newTask" placeholder="Add a new task">
+			<input type="submit" value="Add!">
+		</form>
+			
+	</div>
 	
 {% endblock %}
