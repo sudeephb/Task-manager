@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>My Tasks</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+My Tasks
+{% endblock %}
+
+
+{% block body %}
 	<table>
 		<col width = 500>
 		<col width = 500>
@@ -17,10 +19,8 @@
 
 			<td>
 				<ol> <!-- Todo -->
-					{% for task in tasks %}		
-						{% if task.status == 'to' %}
-							<li>{{ task }} by {{ task.due }}</li>
-						{% endif %}
+					{% for task in todoTasks %}		
+						<li> {{ task }} </li>
 					{% endfor %}
 				</ol>
 			</td>
@@ -30,10 +30,8 @@
 
 			<td>
 				<ol>  <!-- Completed -->
-					{% for task in tasks %}	
-						{% if task.status == 'com' %}		
-							<li>{{ task }} by {{ task.due }}</li>
-						{% endif %}
+					{% for task in comTasks %}		
+						<li> {{ task }} </li>
 					{% endfor %}
 				</ol>
 			</td>
@@ -41,10 +39,8 @@
 
 			<td>
 				<ol>  <!-- Incomplete -->
-					{% for task in tasks %}	
-						{% if task.status == 'incom' %}		
-							<li>{{ task }} by {{ task.due }}</li>
-						{% endif %}
+					{% for task in incomTasks %}		
+						<li> {{ task }} </li>
 					{% endfor %}
 				</ol>
 			</td>
@@ -54,5 +50,4 @@
 		</tr>
 	</table>
 	
-</body>
-</html>
+{% endblock %}
