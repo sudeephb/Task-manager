@@ -19,10 +19,18 @@ My Tasks
 
 			<td>
 				<ol> <!-- Todo -->
-					{% for task in todoTasks %}		
-						<li> {{ task }} </li>
+					<form action="{% url 'tasks' %}" method="post">
+							{% csrf_token %}
+					{% for task in tasks %}	
+						{% if task.status.status_text == 'to' %}
+							<li><input type = "checkbox" name = "todo" value = "{{ task.id }}"> {{ task }} </li>
+						{% endif %}
 					{% endfor %}
+
 				</ol>
+						
+							<input type = "submit" value="Done!">
+						</form>
 			</td>
 
 
@@ -30,8 +38,11 @@ My Tasks
 
 			<td>
 				<ol>  <!-- Completed -->
-					{% for task in comTasks %}		
-						<li> {{ task }} </li>
+
+					{% for task in tasks %}
+						{% if task.status.status_text == 'com' %}		
+							<li> {{ task }} </li>
+						{% endif %}
 					{% endfor %}
 				</ol>
 			</td>
@@ -39,8 +50,11 @@ My Tasks
 
 			<td>
 				<ol>  <!-- Incomplete -->
-					{% for task in incomTasks %}		
+
+					{% for task in tasks %}		
+						{% if task.status.status_text == 'incom' %}
 						<li> {{ task }} </li>
+						{% endif %}
 					{% endfor %}
 				</ol>
 			</td>
