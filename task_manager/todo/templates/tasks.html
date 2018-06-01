@@ -29,7 +29,7 @@ My Tasks
 
 				</ol>
 						
-							<input type = "submit" value="Done!">
+							<input type = "submit" value="Done!" name = "submitname">
 						</form>
 			</td>
 
@@ -40,8 +40,14 @@ My Tasks
 				<ol>  <!-- Completed -->
 
 					{% for task in tasks %}
-						{% if task.status.status_text == 'com' %}		
-							<li> {{ task }} </li>
+						{% if task.status.status_text == 'com' %}	
+						<form action="" method="post">	
+							{% csrf_token %}
+							<li> {{ task }} <button type = "submit" name = "remove"  value = "{{task.id}}">
+								Remove
+							</button> </li>
+							
+						</form>
 						{% endif %}
 					{% endfor %}
 				</ol>

@@ -12,6 +12,7 @@ def tasks(request):
 	}
 
 	if (request.method == 'POST'):
+		remove_id = request.POST.get('remove')
 		completed_task_id = request.POST.get('todo');
 		if completed_task_id:
 		 	# print(f"Completed task id : {request.POST.get('todo')}")
@@ -21,12 +22,18 @@ def tasks(request):
 		 	# print(f"{completed_task.status} - {completed_task}")
 		 	completed_task.save()
 
-	new_task = request.POST.get('newTask')
-	if new_task:
-		print(new_task)
-		s = Status.objects.create(status_text = 'to')
-		task = Task.objects.create(name = new_task, status = s)
-		task.save()
+		new_task = request.POST.get('newTask')
+		if new_task:
+			# print(new_task)
+			s = Status.objects.create(status_text = 'to')
+			task = Task.objects.create(name = new_task, status = s)
+			task.save()
+
+		if remove_id:
+			remove_task = Task.objects.get(id = remove_id)
+			print(remove_task)
+			remove_task.delete()
+
 
 
 	return render(request, "tasks.html", context)
