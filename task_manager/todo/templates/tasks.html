@@ -19,18 +19,17 @@ My Tasks
 
 			<td>
 				<ol> <!-- Todo -->
-					<form action="{% url 'tasks' %}" method="post">
-							{% csrf_token %}
 					{% for task in tasks %}	
 						{% if task.status.status_text == 'to' %}
-							<li><input type = "checkbox" name = "todo" value = "{{ task.id }}"> {{ task }} </li>
+						<form action="" method="post">
+							{% csrf_token %}
+							<li> 
+								{{ task }} <button type = "submit" name = "done" value = "{{task.id}}">Done!</button>
+							</li>
+						</form>
 						{% endif %}
 					{% endfor %}
-
-				</ol>
-						
-							<input type = "submit" value="Done!" name = "submitname">
-						</form>
+				</ol>		
 			</td>
 
 
