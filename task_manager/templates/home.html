@@ -3,9 +3,25 @@
 {% block title %} Task Manager {% endblock %}
 
 {% block body %}
+{% if user.is_authenticated %}
 
-This is home
+<a href = "{% url 'logout' %}">
+	<button type="submit" method = "post">Logout</button>
+</a>
+
+{% else %}
+
+
+<a href = "{% url 'login' %}">
+	<button type="submit" method = "post">Login</button>
+</a>
+
+{% endif %}
+
 <hr>
 <a href = '{% url 'tasks' %}'>My tasks </a>
 
 {% endblock %}
+
+
+
