@@ -6,11 +6,42 @@
 		{% block title %}
 		{% endblock %}
 	</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
 </head>
-<body background="./images/bg.png">
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #54DF7E;">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	    <div class="navbar-nav">
+	      <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
+	      <a class="nav-item nav-link" href="{% url 'tasks' %}">My Tasks</a>
+	    </div>
+	    <div class="collapse navbar-collapse ml-auto">
+	     {% if user.is_authenticated %}
+
+			<a class="nav-item nav-link ml-auto" href = "{% url 'logout' %}">
+				<button class = "btn btn-success" type="submit" method = "post">Logout</button>
+			</a>
+
+			{% else %}
+
+
+			<a class="nav-item nav-link ml-auto" href = "{% url 'login' %}">
+				<button class = "btn btn-success" type="submit" method = "post">Login</button>
+			</a>
+
+		{% endif %}
+
+	    </div>
+	  </div>
+	</nav>
+
 	{% block body %}
 	{% endblock %}
 </body>
